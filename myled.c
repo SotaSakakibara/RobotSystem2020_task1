@@ -29,10 +29,10 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 	if(c == '0'){
 		gpio_base[10] = 1 << 25;
 	}else{
-			gpio_base[7] = 1 << 25;
-			mdelay(500);
-			gpio_base[10] = 1 << 25;
-			mdelay(500);
+		gpio_base[7] = 1 << 25;
+		mdelay(500);
+		gpio_base[10] = 1 << 25;
+		mdelay(500);
 	}
 	return 0;
 }

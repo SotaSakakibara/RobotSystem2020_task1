@@ -16,44 +16,14 @@ static struct cdev cdv;
 static struct class *cls = NULL;
 
 static volatile u32 *gpio_base = NULL;
-/*
-int o(void){
-	gpio_base[7] = 1 << 25;
-	mdelay(300);
-	gpio_base[10] = 1 << 25;
-	mdelay(300);
-	return 0;
-}
 
-int u(void){
-	gpio_base[7] = 1 << 25;
-	mdelay(700);
-	gpio_base[10] = 1 << 25;
-	mdelay(300);
-	return 0;
-}*/
 
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	char c;
-//	char alp;
-//	int i = 0;
 
 	if(copy_from_user(&c,buf,sizeof(char)))
 	return -EFAULT;
-
-/*	while(c[i] != '\0'){
-		alp = c[i];
-		switch(alp){
-			case 'a':o();u();break;
-			case 'b':u();o();o();o();break;
-			case 'c':u();o();u();o();break;
-			case 'd':u();o();o();break;
-			default :printk("半角小文字で入力してください\n");
-		}
-		mdelay(700);
-		i++;
-	}*/
 
 	if(c == '0'){
 		gpio_base[10] = 1 << 25;

@@ -4,6 +4,7 @@
 #include <linux/device.h>
 #include <linux/uaccess.h>
 #include <linux/io.h>
+#include <linux/delay.h>
 
 MODULE_AUTHOR("Sota Sakakibara");
 MODULE_DESCRIPTION("driver for LED control");
@@ -19,6 +20,7 @@ static volatile u32 *gpio_base = NULL;
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	char c;
+	int i=0;
 	if(copy_from_user(&c,buf,sizeof(char)))
 	return -EFAULT;
 
@@ -26,6 +28,13 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 		gpio_base[10] = 1 << 25;
 	}else if(c == '1'){
 		gpio_base[7] = 1 << 25;
+	}else{
+		for(i=0;i<=10;i++){
+			gpio_base[7] = 1 << 25;
+			mdelay(500);
+			gpio_base[10] = 1 << 25;
+			mdelay(500);
+		}
 	}
 	return 1;
 }

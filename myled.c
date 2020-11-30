@@ -6,7 +6,7 @@
 #include <linux/io.h>
 #include <linux/delay.h>
 
-MODULE_AUTHOR("Sota Sakakibara");
+MODULE_AUTHOR("Ryuichi Ueda & Sota Sakakibara");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.0.1");
@@ -24,16 +24,17 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 
 	if(copy_from_user(&c,buf,sizeof(char)))
 	return -EFAULT;
+	
 
 	if(c == '0'){
 		gpio_base[10] = 1 << 25;
 	}else{
 			gpio_base[7] = 1 << 25;
-			mdelay(100);
+			mdelay(500);
 			gpio_base[10] = 1 << 25;
-			mdelay(100);
+			mdelay(500);
 	}
-	return 1;
+	return 0;
 }
 
 static struct file_operations led_fops = {

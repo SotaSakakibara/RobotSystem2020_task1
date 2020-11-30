@@ -16,8 +16,8 @@ static struct cdev cdv;
 static struct class *cls = NULL;
 
 static volatile u32 *gpio_base = NULL;
-
-int o(void){//トン
+/*
+int o(void){
 	gpio_base[7] = 1 << 25;
 	mdelay(300);
 	gpio_base[10] = 1 << 25;
@@ -25,70 +25,44 @@ int o(void){//トン
 	return 0;
 }
 
-int u(void){//ツー
+int u(void){
 	gpio_base[7] = 1 << 25;
 	mdelay(700);
 	gpio_base[10] = 1 << 25;
 	mdelay(300);
 	return 0;
-}
+}*/
 
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
-	char *c;
-	char alp;
-	int i = 0;
+	char c;
+//	char alp;
+//	int i = 0;
 
 	if(copy_from_user(&c,buf,sizeof(char)))
 	return -EFAULT;
 
-	while(c[i] != '\0'){
+/*	while(c[i] != '\0'){
 		alp = c[i];
 		switch(alp){
 			case 'a':o();u();break;
 			case 'b':u();o();o();o();break;
 			case 'c':u();o();u();o();break;
 			case 'd':u();o();o();break;
-			case 'e':o();break;
-			case 'f':o();o();u();o();break;
-			case 'g':u();u();o();break;
-			case 'h':o();o();o();o();break;
-			case 'i':o();o();break;
-			case 'j':o();u();u();u();break;
-			case 'k':u();o();u();break;
-			case 'l':o();u();o();o();break;
-			case 'm':u();u();break;
-			case 'n':u();o();break;
-			case 'o':u();u();u();break;
-			case 'p':o();u();u();o();break;
-			case 'q':u();u();o();u();break;
-			case 'r':o();u();o();break;
-			case 's':o();o();o();break;
-			case 't':u();break;
-			case 'u':o();o();u();break;
-			case 'v':o();o();o();u();break;
-		        case 'w':o();u();u();break;
-		 	case 'x':u();o();o();u();break;
-			case 'y':u();o();u();u();break;
-			case 'z':u();u();o();o();break;
 			default :printk("半角小文字で入力してください\n");
 		}
 		mdelay(700);
 		i++;
-	}
-	/*
+	}*/
+
 	if(c == '0'){
 		gpio_base[10] = 1 << 25;
-	}else if(c == '1'){
-		gpio_base[7] = 1 << 25;
 	}else{
-		for(i=0;i<=10;i++){
 			gpio_base[7] = 1 << 25;
-			mdelay(500);
+			mdelay(100);
 			gpio_base[10] = 1 << 25;
-			mdelay(500);
-		}
-	}*/
+			mdelay(100);
+	}
 	return 1;
 }
 

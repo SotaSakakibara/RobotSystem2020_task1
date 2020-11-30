@@ -6,15 +6,15 @@
 
 ## 動作環境および部品
 ### 環境
-・OS:ubuntu18.04
+*OS:ubuntu18.04
 
 ### 部品リスト
-・RaspberryPi4 ModelB 4GB
-・RaspberryPi用電源アダプタ(TypeC)
-・ブレッドボード
-・LED　１個
-・抵抗100Ω　１個
-・ジャンパワイヤ　２本
+*RaspberryPi4 ModelB 4GB<br>
+*RaspberryPi用電源アダプタ(TypeC)<br>
+*ブレッドボード<br>
+*LED　１個<br>
+*抵抗100Ω　１個<br>
+*ジャンパワイヤ　２本<br>
 
 
 ## インストール方法

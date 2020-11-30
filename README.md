@@ -33,3 +33,8 @@ echo aaaa > /dev/myled0
 ```
 この場合エンター含め5回LEDが点滅する。
 
+## デモ動画リンク
+https://youtu.be/SjzT1kTWT3I
+
+## ライセンス
+GNU General Public License v3.0
